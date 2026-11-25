@@ -6,7 +6,7 @@ Kleine PWA für Klangschalen-Meditation: Schale wählen, Timer stellen, Gong am 
 - `index.html` – Oberfläche, Timer und Audio
 - `manifest.json` – macht die Seite als App installierbar
 - `sw.js` – Service Worker für Offline-Betrieb (bei Änderungen `V` hochzählen)
-- `*.mp3` – echte Klangschalen-Aufnahmen (Quelle: freesound.org, Lizenz vor Weitergabe prüfen)
+- `*.mp3` – echte Klangschalen-Aufnahmen (Quelle: pixabay.com, Lizenz vor Weitergabe prüfen)
 
 ## Neue Schale hinzufügen
 1. mp3 in den Ordner legen
