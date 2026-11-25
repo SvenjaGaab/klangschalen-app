@@ -10,7 +10,7 @@
 <style>
 :root{--bg:#1e1b2e;--card:#2a2640;--fg:#f1ecff;--mute:#a79fc7;--acc:#d9a441}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 16px 24px;display:flex;flex-direction:column;align-items:center}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,sans-serif;min-height:100vh;padding:env(safe-area-inset-top) 16px 110px;display:flex;flex-direction:column;align-items:center}
 main{width:100%;max-width:420px}
 h1{font-weight:500;font-size:1.3rem;text-align:center;margin:20px 0 14px}
 h2{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:22px 0 8px;font-weight:600}
@@ -27,37 +27,46 @@ input[type=number]{background:var(--card);border:2px solid transparent;border-ra
 #go{background:var(--acc);color:#1e1b2e;font-weight:600;flex:2}
 #plus{flex:1.2}
 label{display:flex;align-items:center;gap:8px;color:var(--mute)}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border-radius:14px;padding:10px 14px;color:var(--fg);width:100%}
+.opt .l{flex:1;min-width:0}
+.opt small{display:block;color:var(--mute);font-size:.75rem;margin-top:2px}
+.opt .r{display:flex;align-items:center;gap:8px;white-space:nowrap;color:var(--mute)}
+.opt input[type=number]{width:64px;padding:8px;background:var(--bg);border-radius:10px}
+.opt input[type=checkbox]{width:22px;height:22px;accent-color:var(--acc)}
+.stack{display:flex;flex-direction:column;gap:8px}
 </style>
 </head>
 <body>
 <main>
 <h1>🔔 Klangschalen</h1>
 
-<h2>Klangschale</h2>
-<div class="row" id="bowls"></div>
-
-<h2>Dauer</h2>
-<div class="row" id="presets"></div>
-<div class="row" style="margin-top:8px;align-items:center">
-  <input type="number" id="min" min="1" max="180" value="10" inputmode="numeric"><span>Minuten</span>
-</div>
-
-<h2>Optionen</h2>
-<div class="row" style="flex-direction:column;gap:10px">
-  <label><input type="checkbox" id="startGong" checked> Gong zum Start</label>
-  <label>Intervallgong alle
-    <input type="number" id="interval" min="0" max="60" value="0" style="width:64px;padding:6px" inputmode="numeric"> Min (0 = aus)</label>
-  <label>Verzögerung vor dem Start
-    <input type="number" id="delay" min="0" max="300" value="0" style="width:64px;padding:6px" inputmode="numeric"> Sek (0 = sofort)</label>
-</div>
-
-<div id="err" style="color:#f08a8a;font-size:.8rem;text-align:center;margin-top:10px"></div>
-<div id="phase" style="text-align:center;color:var(--acc);font-size:.9rem;height:1.2em;margin-top:8px"></div>
+<div id="phase" style="text-align:center;color:var(--acc);font-size:.9rem;height:1.2em"></div>
 <div class="time" id="clock" style="margin-top:4px">10:00</div>
 <div class="ctl">
   <button id="cancel">Abbrechen</button>
   <button id="plus">+1 min</button>
   <button id="go">Start</button>
+</div>
+<div id="err" style="color:#f08a8a;font-size:.8rem;text-align:center;margin-top:10px"></div>
+
+<h2>Klangschale</h2>
+<div class="row" id="bowls"></div>
+
+<h2>Dauer</h2>
+<div class="row" id="presets"></div>
+<div class="stack" style="margin-top:8px">
+  <div class="opt"><span class="l">Eigene Dauer</span>
+    <span class="r"><input type="number" id="min" min="1" max="180" value="10" inputmode="numeric"> Min</span></div>
+</div>
+
+<h2>Optionen</h2>
+<div class="stack">
+  <label class="opt"><span class="l">Gong zum Start</span>
+    <span class="r"><input type="checkbox" id="startGong" checked></span></label>
+  <div class="opt"><span class="l">Intervallgong<small>alle x Minuten, 0 = aus</small></span>
+    <span class="r"><input type="number" id="interval" min="0" max="60" value="0" inputmode="numeric"> Min</span></div>
+  <div class="opt"><span class="l">Startverzögerung<small>Countdown vor dem Start, 0 = sofort</small></span>
+    <span class="r"><input type="number" id="delay" min="0" max="300" value="0" inputmode="numeric"> Sek</span></div>
 </div>
 </main>
 
